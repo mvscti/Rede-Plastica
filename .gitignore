@@ -20,16 +20,11 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
-
-
-
 # Dependências
 vendor/
-
 # Arquivos de cache
 tmp/cache/
 cache/
-
 # Logs
 logs/
 
