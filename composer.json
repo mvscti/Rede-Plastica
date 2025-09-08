@@ -1,0 +1,38 @@
+{
+    "name": "if-muriae/rede-plastica",
+    "description": "Plataforma de conexão entre coletores e recicladores de resíduos",
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marcus Vinícius Souza Costa",
+            "email": "marcus.costa@ifsudestemg.edu.br"
+        },
+        {
+            "name": "Gustavo Teixeira",
+            "email": "gteixeiradesousa7@gmail.com"
+        },
+        {
+            "name": "Pedro Henrique Lacerda Silva Soares"
+        },
+        {
+            "name": "Gabriella Moreno Silveira Louzada"
+        },
+        {
+            "name": "Alexandre João Souza de Araújo"
+        }
+    ],
+    "require": {
+        "php": ">=8.4",
+        "slim/slim": "^4.14",
+        "slim/psr7": "^1.7",
+        "php-di/php-di": "^7.0",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "scripts": {
+    }
+}

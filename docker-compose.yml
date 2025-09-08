@@ -1,0 +1,66 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./config/docker/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_fpm
+    restart: always
+    volumes:
+      - ./:/var/www/html
+      - ./config/docker/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - "9000:80"
+    depends_on:
+      - db
+
+  db:
+    image: postgis/postgis:17-3.5
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: rede_plastica
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./config/docker/init-postgis.sql:/docker-entrypoint-initdb.d/init-postgis.sql
+      - ./db/rede_plastica.backup:/docker-entrypoint-initdb.d/dump.backup
+      - ./config/docker/restore.sh:/docker-entrypoint-initdb.d/restore.sh
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
