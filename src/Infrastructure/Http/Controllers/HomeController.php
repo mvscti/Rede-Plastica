@@ -11,12 +11,13 @@ final readonly class HomeController extends AbstractController
 {
     public function index(Request $request, Response $response): Response
     {
-        return $this->successResponse(
-            response: $response,
-            message: 'Bem-vindo(a) à API - Rede Plástica!',
-            data: [
-                'documentation' => 'À ser definida.',
-            ]
-        );
+        return $this->responseBuilder
+            ->success(
+                response: $response,
+                message: 'Bem-vindo(a) à API - Rede Plástica!',
+                data: [
+                    'documentation' => 'À ser definida.',
+                ]
+            )->build();
     }
 }

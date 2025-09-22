@@ -34,3 +34,8 @@ logs/
 # Outros arquivos temporários ou específicos
 .DS_Store
 Thumbs.db
+
+.idea/
+
+public/files
+storage/tmp

@@ -4,9 +4,21 @@ declare(strict_types=1);
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
+use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$dotenv = Dotenv::createImmutable(dirname(__DIR__) . '/', $_SERVER['ENV_FILE'] ?? '.env');
+$dotenv = Dotenv::createImmutable(PROJECT_ROOT, $_SERVER['ENV_FILE'] ?? '.env');
 $dotenv->safeLoad();
+
+$containerDefinitions = require CONFIG_DIR . '/dependencies/all-dependencies.php';
+
+$containerBuilder = new ContainerBuilder()->addDefinitions($containerDefinitions);
+
+if ($containerDefinitions['config']['app']['env'] === 'production') {
+    $containerBuilder->enableCompilation(TEMP_DIR . '/di');
+    $containerBuilder->writeProxiesToFile(true, TEMP_DIR . '/di/proxies');
+}
+
+return $containerBuilder->build();
