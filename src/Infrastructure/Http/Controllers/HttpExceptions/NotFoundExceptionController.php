@@ -23,7 +23,7 @@ final readonly class NotFoundExceptionController extends AbstractController
         parent::__construct($responseBuilder, $errorBuilder);
     }
 
-    public function index(Request $request, Exception $exception, bool $displayErrorDetails): Response
+    public function index(): Response
     {
         $response = $this->responseFactory->createResponse();
 

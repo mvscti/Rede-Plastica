@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use App\Application\Contracts\Hashers\PasswordHasherProviderInterface;
-use App\Infrastructure\Http\Controllers\HttpExceptions\MethodNotAllowedExceptionController;
-use App\Infrastructure\Http\Controllers\HttpExceptions\NotFoundExceptionController;
+use App\Infrastructure\Http\Middlewares\HttpExceptionHandlerMiddleware;
 use App\Infrastructure\Providers\PasswordHasherProvider;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
@@ -13,40 +12,18 @@ use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Slim\App;
-use Slim\Exception\HttpMethodNotAllowedException;
-use Slim\Exception\HttpNotFoundException;
 use Slim\Factory\AppFactory;
 use Slim\Psr7\Factory\ResponseFactory;
-
 use Symfony\Component\Translation\Loader\PhpFileLoader;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Zeuxisoo\Whoops\Slim\WhoopsMiddleware;
 
 use function DI\autowire;
 
 return [
-    // HTTP
-    App::class => function (ContainerInterface $container) {
-        $slimConfig = $container->get('config')['slim'];
-
-        $app = AppFactory::create(container: $container);
-
-        $app->addBodyParsingMiddleware();
-        $app->addRoutingMiddleware();
-
-        $errorMiddleware = $app->addErrorMiddleware(
-            $slimConfig['display_error_details'],
-            $slimConfig['log_errors'],
-            $slimConfig['log_error_details']
-        );
-
-        $errorMiddleware->setErrorHandler(HttpNotFoundException::class, [NotFoundExceptionController::class, 'index']);
-        $errorMiddleware->setErrorHandler(HttpMethodNotAllowedException::class, [MethodNotAllowedExceptionController::class, 'index']);
-
-        return $app;
-    },
-    ResponseFactoryInterface::class => autowire(ResponseFactory::class),
+    // Infrastructure Core
     ValidatorInterface::class => function () {
         $translator = new Translator('pt_BR');
         $translator->addLoader('php', new PhpFileLoader());
@@ -62,6 +39,27 @@ return [
             ->setTranslationDomain('validators')
             ->getValidator();
     },
+
+    // HTTP
+    App::class => function (ContainerInterface $container) {
+        $displayErrors = $container->get('config')['app']['display_errors'] ?? false;
+
+        $app = AppFactory::create(container: $container);
+
+        $app->addBodyParsingMiddleware();
+        $app->addRoutingMiddleware();
+
+        $app->add(new WhoopsMiddleware([
+            'enable' => $displayErrors,
+            'editor' => 'vscode',
+            'title'  => 'Um erro ocorreu!',
+        ]));
+
+        $app->add(HttpExceptionHandlerMiddleware::class);
+
+        return $app;
+    },
+    ResponseFactoryInterface::class => autowire(ResponseFactory::class),
 
     // Persistence
     EntityManagerInterface::class => function (ContainerInterface $container) {

@@ -21,4 +21,10 @@ if ($containerDefinitions['config']['app']['env'] === 'production') {
     $containerBuilder->writeProxiesToFile(true, TEMP_DIR . '/di/proxies');
 }
 
+if ($containerDefinitions['config']['app']['display_errors'] === false) {
+    ini_set('display_errors', '0');
+    ini_set('display_startup_errors', '0');
+    error_reporting(0);
+}
+
 return $containerBuilder->build();

@@ -8,9 +8,9 @@ return [
             'name' => $_SERVER['APP_NAME'] ?? 'Rede Plástica',
             'env' => $_SERVER['APP_ENV'] ?? 'production',
             'base_url' => $_SERVER['APP_BASE_URL'],
+            'display_errors' => ($_SERVER['APP_DISPLAY_ERRORS'] ?? 'false') === 'true',
         ],
         'slim' => [
-            'display_error_details' => ($_SERVER['SLIM_DISPLAY_ERROR_DETAILS'] ?? 'false') === 'true',
             'log_errors' => ($_SERVER['SLIM_LOG_ERRORS'] ?? 'true') === 'true',
             'log_error_details' => ($_SERVER['SLIM_LOG_ERROR_DETAILS'] ?? 'true') === 'true',
         ],
