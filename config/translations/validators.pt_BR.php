@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'This value should not be blank.' => 'Este valor não deve estar em branco.',
+    'This value should not be null.' => 'Este valor não deve ser nulo.',
+    'This value is not valid.' => 'Este valor não é válido.',
+    'This value should be true.' => 'Este valor deve ser verdadeiro.',
+    'This value should be false.' => 'Este valor deve ser falso.',
+    'This value should be of type {{ type }}.' => 'Este valor deve ser do tipo {{ type }}.',
+    'This value should be {{ limit }} or less.' => 'Este valor deve ser {{ limit }} ou menor.',
+    'This value should be {{ limit }} or more.' => 'Este valor deve ser {{ limit }} ou maior.',
+    'This value should not be equal to {{ compared_value }}.' => 'Este valor não deve ser igual a {{ compared_value }}.',
+    'This value should be identical to {{ compared_value_type }} {{ compared_value }}.' => 'Este valor deve ser idêntico a {{ compared_value_type }} {{ compared_value }}.',
+    'This value should not be identical to {{ compared_value_type }} {{ compared_value }}.' => 'Este valor não deve ser idêntico a {{ compared_value_type }} {{ compared_value }}.',
+    'This value should be between {{ min }} and {{ max }}.' => 'Este valor deve estar entre {{ min }} e {{ max }}.',
+    'This value should not be between {{ min }} and {{ max }}.' => 'Este valor não deve estar entre {{ min }} e {{ max }}.',
+    'This value does not match the expected pattern.' => 'Este valor não corresponde ao padrão esperado.',
+    'This value is too short. It should have {{ limit }} character or more.|This value is too short. It should have {{ limit }} characters or more.' => 'Este valor é muito curto. Deve ter {{ limit }} caractere ou mais.|Este valor é muito curto. Deve ter {{ limit }} caracteres ou mais.',
+    'This value is too long. It should have {{ limit }} character or less.|This value is too long. It should have {{ limit }} characters or less.' => 'Este valor é muito longo. Deve ter {{ limit }} caractere ou menos.|Este valor é muito longo. Deve ter {{ limit }} caracteres ou menos.',
+    'This value should be one of the allowed choices.' => 'Este valor deve ser uma das opções permitidas.',
+    'You must select at least {{ limit }} choice.|You must select at least {{ limit }} choices.' => 'Você deve selecionar pelo menos {{ limit }} opção.|Você deve selecionar pelo menos {{ limit }} opções.',
+    'You must select at most {{ limit }} choice.|You must select at most {{ limit }} choices.' => 'Você deve selecionar no máximo {{ limit }} opção.|Você deve selecionar no máximo {{ limit }} opções.',
+    'One or more of the given values is invalid.' => 'Um ou mais dos valores fornecidos são inválidos.',
+    'This field was not expected.' => 'Este campo não era esperado.',
+    'This field is missing.' => 'Este campo está faltando.',
+    'This value is not a valid date.' => 'Este valor não é uma data válida.',
+    'This value is not a valid datetime.' => 'Este valor não é uma data e hora válida.',
+    'This value is not a valid email address.' => 'Este valor não é um endereço de e-mail válido.',
+    'The file could not be found.' => 'O arquivo não pôde ser encontrado.',
+    'The file is not readable.' => 'O arquivo não pode ser lido.',
+    'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.' => 'O arquivo é muito grande ({{ size }} {{ suffix }}). O tamanho máximo permitido é {{ limit }} {{ suffix }}.',
+    'The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.' => 'O tipo mime do arquivo é inválido ({{ type }}). Os tipos mime permitidos são {{ types }}.',
+    'This value is not a valid URL.' => 'Este valor não é uma URL válida.',
+];
