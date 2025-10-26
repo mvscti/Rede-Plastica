@@ -21,4 +21,16 @@ return function (App $app) {
             $group->delete('', [UsuarioController::class, 'destroy']);
         });
     });
+
+    $app->group('/pessoas', function (RouteCollectorProxy $group) {
+//        $group->get('', [UsuarioController::class, 'index']);
+//        $group->post('', [UsuarioController::class, 'store']);
+//
+//        $group->group('/{id:[0-9]+}', function (RouteCollectorProxy $group) {
+//            $group->get('', [UsuarioController::class, 'show']);
+//            $group->put('', [UsuarioController::class, 'update']);
+//            $group->patch('', [UsuarioController::class, 'update']);
+//            $group->delete('', [UsuarioController::class, 'destroy']);
+//        });
+    });
 };

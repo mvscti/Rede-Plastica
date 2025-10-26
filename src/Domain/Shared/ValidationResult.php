@@ -13,6 +13,13 @@ class ValidationResult
         $this->errors[] = $message;
     }
 
+    public function addErrors(array $messages): void
+    {
+        foreach ($messages as $message) {
+            $this->addError($message);
+        }
+    }
+
     public function isValid(): bool
     {
         return empty($this->errors);

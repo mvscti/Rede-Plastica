@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Mappers;
 
-use App\Domain\Usuario\Usuario;
-use App\Domain\Usuario\UsuarioFactory;
-use App\Infrastructure\Persistence\Entities\UsuarioEntity;
+use App\Domain\Usuario\Usuario\Usuario;
+use App\Domain\Usuario\Usuario\UsuarioFactory;
+use App\Infrastructure\Persistence\Entities\Usuario\UsuarioEntity;
 
 readonly class UsuarioMapper
 {

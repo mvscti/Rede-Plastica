@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Resources;
 
-use App\Domain\Usuario\Usuario;
+use App\Domain\Usuario\Usuario\Usuario;
 
 class UsuarioResource
 {

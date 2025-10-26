@@ -17,5 +17,4 @@ WORKDIR /var/www/html
 # Copia os arquivos do projeto (opcional, se usar volumes pode omitir)
 # COPY . /var/www/html
 
-#CMD ["php-fpm"]
-CMD ln -s /var/www/html/storage/public /var/www/html/public/files && php-fpm
+CMD ["php-fpm"]

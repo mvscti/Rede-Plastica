@@ -6,10 +6,9 @@ namespace App\Application\UseCases\Usuario;
 
 use App\Application\Contracts\Hashers\PasswordHasherProviderInterface;
 use App\Domain\Shared\Result;
-use App\Domain\Shared\ValidationResult;
-use App\Domain\Usuario\Usuario;
-use App\Domain\Usuario\UsuarioFactory;
-use App\Domain\Usuario\UsuarioRepositoryInterface;
+use App\Domain\Usuario\Usuario\Usuario;
+use App\Domain\Usuario\Usuario\UsuarioFactory;
+use App\Domain\Usuario\Usuario\UsuarioRepositoryInterface;
 
 readonly class RegisterUsuarioUseCase
 {
